@@ -1,0 +1,1 @@
+// Pure functions that take a raw prompt string and return a PromptQuery object.

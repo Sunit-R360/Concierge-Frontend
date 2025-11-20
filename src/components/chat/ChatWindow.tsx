@@ -1,0 +1,1 @@
+// recieves props (messages/results)
