@@ -1,6 +1,4 @@
 /* Add Google Fonts if not added yet */
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Playfair+Display&display=swap');
-
-@tailwind base;
-@tailwind components;
+@import "tailwindcss";
 @tailwind utilities;
