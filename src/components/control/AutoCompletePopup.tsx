@@ -13,8 +13,8 @@ export default function AutocompletePopup({
   onSelect: (s: Suggestion) => void;
 }) {
   return(
-    <div>
-        {suggestions.length === 0 && <div>No suggestions</div>}
+    <div className="absolute z-50 mt-1 w-full bg-white rounded shadow-lg border">
+        {suggestions.length === 0 && <div className="p-2 text-gray-500">No suggestions</div>}
         {suggestions.map((s,i)=>(
             <button 
             key={s.value + i}
@@ -26,9 +26,9 @@ export default function AutocompletePopup({
                 "w-full text-left px-3 py-2 hover:bg-gray-100 " + (i === selectedIndex ? "bg-gray-100" : "")
             }
             >
-                <div>
-                    <span>{s.value}</span>
-                    <span>{s.type}</span>
+                <div className="flex justify-between">
+                    <span className="truncate">{s.value}</span>
+                    <span className="text-xs text-gray-400">{s.type}</span>
                 </div>
             </button>
         ))}
