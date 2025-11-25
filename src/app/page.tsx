@@ -13,10 +13,15 @@ export default function Home() {
   async function handleSubmitPrompt(prompt: string) {
     setLoading(true);
     try{
+      console.log("🔍 Sending prompt:", prompt);
       const response = await searchPrompt(prompt, "anon");
+      console.log("✅ API Response:", response);
+      console.log("📦 Results from response:", response.results);
       setResults(response.results ?? []);
+      console.log("✨ Results set to state");
     } catch (error) {
-      console.log(error);
+      console.error("❌ Error fetching results:", error);
+      alert("Error: " + (error instanceof Error ? error.message : "Unknown error"));
     } finally {
       setLoading(false);
     }

@@ -15,13 +15,22 @@ export async function autocompleteToken(token: string, userId?: string){
 
 
 export async function searchPrompt(prompt: string, userId?: string){
-    const response = await fetch (`${BASE}/api/search`,{
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({prompt,userId})
-    });
-    if(!response.ok) throw new Error("search failed");
-    return response.json();
+    try {
+        const response = await fetch (`${BASE}/api/search`,{
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({prompt,userId})
+        });
+        if(!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`search failed: ${response.status} - ${errorText}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("🔴 searchPrompt error:", error);
+        throw error;
+    }
 }
 
 export async function appendHistory(userId: string, prompt: string) {
